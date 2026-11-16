@@ -22,6 +22,9 @@ jobs:
   build:
     name: Build image
     runs-on: ubuntu-22.04
+    permissions:
+      contents: read
+      packages: write
 
     steps:
       - name: Free disk space
@@ -80,7 +83,7 @@ jobs:
           # Determine the Docker cache image.
           name="${GITHUB_REPOSITORY#*/}"
           name="${name#docker-}"
-          CACHE_IMAGE="ghcr.io/${GITHUB_REPOSITORY_OWNER}/${name}:buildcache"
+          CACHE_IMAGE="ghcr.io/${GITHUB_REPOSITORY_OWNER,,}/${name}:buildcache"
           # Print results.
           echo "::group::Results"
           echo "Github reference: $GITHUB_REF"
