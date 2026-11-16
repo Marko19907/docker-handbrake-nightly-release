@@ -5,7 +5,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  DOCKER_IMAGE_NAME: jlesage/handbrake
+  DOCKER_IMAGE_NAME: marko19907/handbrake-nightly-release
   PLATFORMS: linux/amd64
 
 on:

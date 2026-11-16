@@ -5,7 +5,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  DOCKER_IMAGE_NAME: jlesage/handbrake
+  DOCKER_IMAGE_NAME: marko19907/handbrake-nightly-release
   PLATFORMS: linux/amd64
 
 on:
@@ -99,7 +99,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          ref: nightly
+          ref: master
 
       - name: Setup QEMU
         uses: docker/setup-qemu-action@v2
@@ -126,7 +126,7 @@ jobs:
             DOCKER_IMAGE_VERSION=${{ needs.prepare.outputs.label_version }}
             HANDBRAKE_VERSION=${{ needs.prepare.outputs.handbrake_version }}
             HANDBRAKE_URL=https://github.com/HandBrake/HandBrake.git
-            HANDBRAKE_DEBUG_MODE=max
+            HANDBRAKE_DEBUG_MODE=none
           cache-from: type=gha,scope=${{ env.DOCKER_IMAGE_NAME }}-nightly
           cache-to: type=gha,mode=max,scope=${{ env.DOCKER_IMAGE_NAME }}-nightly
 
