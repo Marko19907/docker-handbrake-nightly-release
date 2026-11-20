@@ -133,6 +133,8 @@ RUN \
 # Add files.
 COPY rootfs/ /
 COPY --from=handbrake /tmp/handbrake-install /
+# Include the libvpx ABI used by the build, alongside the runtime's version.
+COPY --from=handbrake /usr/lib/libvpx.so.* /usr/lib/
 COPY --from=handbrake /tmp/handbrake-version /tmp/handbrake-version
 COPY --from=cpu_features /tmp/cpu_features-install/bin/list_cpu_features /usr/bin/
 
